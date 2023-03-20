@@ -41,6 +41,7 @@ class Game {
     this.started = false;
     this.score = 0;
     this.timer = undefined;
+    this.level = 1;
   }
 
   setGameStop(onGameStop) {
@@ -48,7 +49,7 @@ class Game {
   }
 
   initGame() {
-    this.gameField.initGame();
+    this.gameField.initGame(this.level);
     this.score = 0;
   }
 
@@ -105,7 +106,7 @@ class Game {
   }
 
   startGameTimer() {
-    let remainingSec = this.gameDuration;
+    let remainingSec = this.gameDuration * this.level;
     this.updateTimer(remainingSec);
     this.timer = setInterval(() => {
       if (remainingSec <= 0) {
@@ -134,15 +135,21 @@ class Game {
       if (this.cloudCount === this.score) {
         this.gameField.gameField.style.background =
           'url(imgs/sun2.png) center/cover no-repeat';
-      } else if (this.cloudCount * 2 === this.score) {
+      } else if (this.cloudCount * this.level * 2 === this.score) {
         this.gameField.gameField.style.background =
           'url(imgs/sun3.png) center/cover no-repeat';
-        this.stopGame('win');
+        if (this.level === 3) {
+          this.stopGame('finish');
+          this.level = 1;
+        } else {
+          this.stopGame('win');
+          this.level++;
+        }
       }
     }
   };
 
   updateScore(count) {
-    this.gameScore.innerText = this.cloudCount * 2 - count;
+    this.gameScore.innerText = this.cloudCount * this.level * 2 - count;
   }
 }

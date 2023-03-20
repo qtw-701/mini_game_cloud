@@ -16,12 +16,12 @@ export default class Field {
     this.onClick = onClick;
   }
 
-  initGame() {
+  initGame(level) {
     this.gameField.innerHTML = '';
     this.gameField.style.background =
       'url(imgs/sun.png) center/cover no-repeat';
-    this.addItem('cloud', this.cloudCount, 'imgs/cloud2.png');
-    this.addItem('cloud', this.cloudCount, 'imgs/cloud1.png');
+    this.addItem('cloud', this.cloudCount * level, 'imgs/cloud2.png');
+    this.addItem('cloud', this.cloudCount * level, 'imgs/cloud1.png');
   }
 
   onItemClick = item => {

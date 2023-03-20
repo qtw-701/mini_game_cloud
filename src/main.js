@@ -3,7 +3,7 @@
 import PopUp from './popup.js';
 import { GameBuilder } from './game.js';
 
-const game = new GameBuilder().withCloudCount(10).withGameDuration(10).build();
+const game = new GameBuilder().withCloudCount(5).withGameDuration(5).build();
 
 game.setGameStop(reason => popUpBanner.showPopUpText(reason));
 

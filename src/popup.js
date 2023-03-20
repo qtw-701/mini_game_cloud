@@ -28,9 +28,15 @@ export default class PopUp {
         sound.playAlert();
         break;
       case 'win':
+        this.popUpText.innerText = "Yeah✨ Let's go to the next😆";
+        icon.classList.add('fa-play');
+        // icon.classList.add('fa-redo');
+        sound.playWin();
+        break;
+      case 'finish':
         this.popUpText.innerText = 'THANK YOU SO MUCH🥰';
-        icon.classList.remove('fa-play');
-        icon.classList.add('fa-redo');
+        icon.classList.add('fa-play');
+        // icon.classList.add('fa-redo');
         sound.playWin();
         break;
       case 'lose':
